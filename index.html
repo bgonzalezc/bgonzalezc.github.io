@@ -31,7 +31,10 @@ nav .lg{margin-right:auto;font:900 1rem var(--d)}
 /* HERO */
 .hero{min-height:100svh;display:grid;place-items:center;overflow:hidden;transition:background .5s,color .5s}
 .hero.inv{background:var(--k);color:var(--g)}
-.hero::after{content:"";position:absolute;right:-clamp(110px,14vw,210px);bottom:-clamp(110px,14vw,210px);width:clamp(220px,34vw,460px);aspect-ratio:1;border-radius:50%;background:var(--r);opacity:.92;z-index:0}
+.hero::after{content:"";position:absolute;right:-clamp(70px,8vw,130px);bottom:-clamp(70px,8vw,130px);width:clamp(260px,38vw,520px);aspect-ratio:1;background:
+radial-gradient(circle at 50% 100%,transparent 0 24%,var(--r) 25% 27%,transparent 28%) 0 0/64px 32px,
+radial-gradient(circle at 50% 100%,transparent 0 24%,var(--r) 25% 27%,transparent 28%) 32px 16px/64px 32px;
+opacity:.18;z-index:0}
 .hero>*{z-index:1}
 .hero.inv::after{background:var(--r)}
 .hero .wel{font-family:"Noto Serif JP","Unbounded",serif}
@@ -59,9 +62,14 @@ nav .lg{margin-right:auto;font:900 1rem var(--d)}
 .tilt{position:relative;width:var(--cw);height:var(--ch);transform-style:preserve-3d;transform:translateY(6%) rotateX(-14deg)}
 .ring{position:absolute;inset:0;transform-style:preserve-3d}
 .card{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(calc(var(--i)*var(--step))) translateZ(var(--R)) translateY(var(--ty)) rotateZ(var(--tz)) scale(var(--s,1));cursor:pointer}
-.front,.bk{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden}
-.front{padding:18px;display:flex;flex-direction:column;justify-content:space-between;color:var(--fg,var(--k));box-shadow:0 24px 60px #000a;border:1px solid currentColor}
-.bk{transform:rotateY(180deg);background:var(--k);border:1px solid var(--r);display:grid;place-items:center;color:var(--r);font:900 2.2rem "Noto Serif JP",serif}
+.card::before{content:"";position:absolute;left:50%;top:-82px;width:16px;height:102px;transform:translateX(-50%) translateZ(-8px);z-index:-1;border-left:5px solid var(--r);border-right:5px solid var(--r);border-radius:10px;background:repeating-linear-gradient(135deg,var(--w) 0 6px,var(--r) 6px 12px);box-shadow:0 0 0 3px var(--k),0 12px 20px #000a}
+.card::after{content:"";position:absolute;left:50%;bottom:-46px;width:34px;height:58px;transform:translateX(-50%) translateZ(8px);z-index:4;background:linear-gradient(90deg,#a30e14 0 18%,var(--r) 18% 82%,#670a0e 82%);clip-path:polygon(38% 0,62% 0,78% 26%,100% 46%,76% 100%,24% 100%,0 46%,22% 26%);filter:drop-shadow(0 12px 10px #000c)}
+.omamori-edge{position:absolute;inset:5px -10px -5px 11px;z-index:-2;background:#6e0b10;border:3px solid #a4141a;clip-path:polygon(9% 0,91% 0,100% 8%,94% 86%,82% 100%,18% 100%,6% 86%,0 8%);transform:translateZ(-16px);box-shadow:16px 18px 28px #000c}
+.front,.bk{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden;clip-path:polygon(9% 0,91% 0,100% 8%,94% 86%,82% 100%,18% 100%,6% 86%,0 8%);border-radius:18px 18px 28px 28px}
+.front{padding:18px;display:flex;flex-direction:column;justify-content:space-between;color:var(--fg,var(--k));box-shadow:inset 8px 0 16px #0004,inset -8px 0 12px #fff2,inset 0 -18px 26px #0005,0 24px 60px #000c;outline:2px solid currentColor;outline-offset:-8px;transform:translateZ(12px);animation:omamoriSway 3.8s ease-in-out infinite;transform-origin:50% -12%}
+.front::after{content:"";position:absolute;left:8px;right:8px;top:8px;bottom:8px;z-index:3;border:1px dashed currentColor;opacity:.42;pointer-events:none}
+.bk{transform:rotateY(180deg) translateZ(12px);background:var(--k);border:1px solid var(--r);display:grid;place-items:center;color:var(--r);font:900 2.2rem "Noto Serif JP",serif;outline:2px solid var(--r);outline-offset:-10px;box-shadow:inset 0 0 30px #000}
+@keyframes omamoriSway{0%,100%{transform:rotateZ(-1.4deg)}50%{transform:rotateZ(1.4deg)}}
 .bk::before{content:"検";width:72px;height:72px;border:2px solid var(--r);border-radius:50%;display:grid;place-items:center}
 .card-k{position:absolute;right:12px;bottom:12px;z-index:2;font:900 1.15rem "Noto Serif JP",serif;writing-mode:vertical-rl;letter-spacing:.12em;opacity:.82}
 .card-no{position:absolute;left:12px;bottom:12px;z-index:2;font:800 .68rem var(--b);letter-spacing:.16em}
@@ -74,14 +82,16 @@ nav .lg{margin-right:auto;font:900 1rem var(--d)}
 .f3::after{content:"";position:absolute;right:-16%;top:-22%;width:62%;aspect-ratio:1;border:10px solid var(--r);border-radius:50%}
 .f4{background:var(--k);--fg:var(--w)}.f4::before{content:"";position:absolute;inset:14px;border:1px solid var(--r);background:radial-gradient(circle,var(--r) 0 3px,transparent 4px) 0 0/24px 24px}
 .f5{background:var(--w)}.f5::before{content:"";position:absolute;right:-15%;top:-20%;width:74%;aspect-ratio:1;background:var(--r);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 56%,79% 91%,50% 70%,21% 91%,32% 56%,2% 35%,39% 35%)}
-.axis{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px;border-radius:50%;background:var(--r)}
+.axis{position:absolute;display:none}
 .ctl{display:flex;justify-content:center;gap:14px;margin-top:10px}
 .ctl button{width:48px;height:48px;border:2px solid var(--g);background:none;color:var(--g);font-size:1.3rem;cursor:pointer}
 .ctl button:hover{background:var(--r);border-color:var(--r)}
 
 /* ABOUT / PROYECTOS */
 .ab{display:grid;grid-template-columns:220px 1fr;gap:clamp(24px,5vw,80px);align-items:center}
-.seal{position:relative;width:220px;aspect-ratio:1;border:3px solid var(--k);border-radius:50%;display:grid;place-items:center;background:var(--r);color:var(--w);box-shadow:16px 16px 0 var(--k);transform:rotate(-4deg)}
+.seal{position:relative;width:220px;aspect-ratio:1;border:3px solid var(--k);border-radius:50%;display:grid;place-items:center;background:var(--r);color:var(--w);box-shadow:16px 16px 0 var(--k);transform:rotate(-4deg);cursor:pointer;font-family:inherit;padding:0;transition:transform .25s,box-shadow .25s}
+.seal:hover{transform:rotate(0) scale(1.04);box-shadow:10px 10px 0 var(--k)}
+.seal:active{transform:rotate(-4deg) scale(.96);box-shadow:6px 6px 0 var(--k)}
 .seal::before{content:"";position:absolute;inset:12px;border:2px solid var(--w);border-radius:50%}
 .seal b{position:relative;font:italic 700 3.8rem/.8 "Cormorant Garamond","Times New Roman",serif}
 .seal small{position:absolute;bottom:34px;font:900 .65rem "Noto Serif JP",serif;letter-spacing:.18em}
@@ -117,8 +127,14 @@ dialog{border:3px solid var(--r);background:var(--k);color:var(--g);width:min(58
 dialog::backdrop{background:#000b}
 dialog h3{font:900 1.6rem/1.05 var(--d);margin:0 0 6px;letter-spacing:-.03em;padding-right:40px}
 dialog .x{position:absolute;right:14px;top:14px;width:40px;height:40px;border:2px solid var(--g);background:none;color:var(--g);font-size:1.2rem;cursor:pointer}
+.personal-dialog{border-color:var(--w)}
+.personal-dialog h3{font-family:"Pinyon Script","Brush Script MT",cursive;font-size:2.8rem;font-weight:400;color:var(--w)}
+.personal-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px}
+.personal-grid p{margin:0}
+.personal-note{border-left:3px solid var(--r);padding-left:16px}
+.personal-dialog .lk a{color:var(--r)}
 
-@media (max-width:760px){.ab,.row,.cg,.ex,.grp{grid-template-columns:1fr}.seal{width:180px}}
+@media (max-width:760px){.ab,.row,.cg,.ex,.grp,.personal-grid{grid-template-columns:1fr}.seal{width:180px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}.title span{animation:none}}
 </style>
 </head>
@@ -143,7 +159,7 @@ dialog .x{position:absolute;right:14px;top:14px;width:40px;height:40px;border:2p
 </section>
 
 <section id="about"><h2 class="st o rv">About me</h2>
-  <div class="ab rv"><div class="seal" aria-label="Sello personal BG"><b>BG</b><small>ベンジャミン</small></div>
+  <div class="ab rv"><button type="button" class="seal" id="seal" aria-label="Abrir datos personales"><b>BG</b><small>ベンジャミン</small></button>
   <p>Soy Benjamín González, estudiante de Ingeniería Civil Informática en la Universidad San Sebastián. Me interesa desarrollar soluciones tecnológicas que combinen programación, análisis de datos, automatización o cualquier cosa que me haga aprender. Disfruto experimentar con nuevas tecnologías y transformar problemas reales en proyectos funcionales.</p></div>
 </section>
 
@@ -185,14 +201,20 @@ const lks=l=>l.length?'<p class="lk">'+l.map(x=>'<a href="'+x[1]+'" target="_bla
 $('#cm').textContent=CFG.email;$('#cm').href='mailto:'+CFG.email;$('#cg').href=CFG.github;$('#cl').href=CFG.linkedin;
 const TZ=[-4,3,-2,5,-5,2],TY=[0,-18,14,-10,16,-14];
 const JK=['起点','解析','自動','記録','防御','設計'];
-$('#ring').innerHTML=D.map((x,i)=>'<div class="card" style="--i:'+i+';--tz:'+TZ[i]+'deg;--ty:'+TY[i]+'px"><div class="front f'+i+'"><span class="tag">'+x.t+'</span><b class="big">'+x.b+'</b><span class="card-no">0'+(i+1)+' / 作品</span><span class="card-k">'+JK[i]+'</span></div><div class="bk">+</div></div>').join('');
+$('#ring').innerHTML=D.map((x,i)=>'<div class="card" style="--i:'+i+';--tz:'+TZ[i]+'deg;--ty:'+TY[i]+'px"><div class="omamori-edge"></div><div class="front f'+i+'"><span class="tag">'+x.t+'</span><b class="big">'+x.b+'</b><span class="card-no">0'+(i+1)+' / 作品</span><span class="card-k">'+JK[i]+'</span></div><div class="bk">+</div></div>').join('');
 $('#rows').innerHTML=D.map((x,i)=>x.p?'<article class="row rv"><div class="vis f'+i+'"><b>'+x.b+'</b></div><div><h3>'+x.n+'</h3><p>'+x.d+'</p>'+(x.r?'<p><strong>Mi contribución:</strong> '+x.r+'</p>':'')+tg(x.tech)+lks(x.l)+'</div></article>':'').join('');
 $('#grps').innerHTML=Object.keys(SK).map(k=>'<div class="grp rv"><h3>'+k+'</h3><ul class="tags l">'+SK[k].map(s=>'<li>'+s+'</li>').join('')+'</ul></div>').join('');
 
 /* modal */
 const dlg=$('#dlg');
-function open(i){const x=D[i];dlg.innerHTML='<button class="x" aria-label="Cerrar">✕</button><h3>'+x.n+'</h3><p style="color:var(--r);font-weight:600;margin:0 0 12px">'+x.t+'</p><p>'+x.d+'</p>'+(x.r?'<p><strong>Mi contribución:</strong> '+x.r+'</p>':'')+tg(x.tech)+lks(x.l);dlg.showModal();dlg.querySelector('.x').onclick=()=>dlg.close()}
+function open(i){const x=D[i];dlg.className='';dlg.innerHTML='<button class="x" aria-label="Cerrar">✕</button><h3>'+x.n+'</h3><p style="color:var(--r);font-weight:600;margin:0 0 12px">'+x.t+'</p><p>'+x.d+'</p>'+(x.r?'<p><strong>Mi contribución:</strong> '+x.r+'</p>':'')+tg(x.tech)+lks(x.l);dlg.showModal();dlg.querySelector('.x').onclick=()=>dlg.close()}
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+$('#seal').addEventListener('click',()=>{
+  dlg.className='personal-dialog';
+  dlg.innerHTML='<button class="x" aria-label="Cerrar">✕</button><h3>Conóceme, VISAQ</h3><p style="color:var(--r);font-weight:700;margin:0">Benjamín González · 22 años</p><div class="personal-grid"><div><p><strong>Mi persona</strong><br>En realidad nadie me llama Benjamín: casi todos me llaman <strong>VISAQ</strong>. Me gusta la música y me encantan los animes.</p><p><strong>Mi familia</strong><br>Amo profundamente a mi familia.</p></div><div class="personal-note"><p><strong>Katalina</strong><br>Tengo una novia que se llama Katalina y que todos los sueños que tengo ella está incluida :3 .</p><p><strong>Mi sueño</strong><br>Quiero aprender siempre, crear algo grande y dejar una huella importante en el mundo antes de irme. También sueño con conocer Japón.</p></div></div><p class="lk"><a href="https://open.spotify.com/search/Nights%20Frank%20Ocean" target="_blank" rel="noopener">Escuchar “Night” — Frank Ocean ↗</a></p>';
+  dlg.showModal();
+  dlg.querySelector('.x').onclick=()=>dlg.close();
+});
 
 /* ruleta 3D */
 const ring=$('#ring'),stage=$('#stage'),cards=[].slice.call(ring.children),N=cards.length,step=360/N;
